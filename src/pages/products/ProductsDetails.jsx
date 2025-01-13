@@ -3,12 +3,15 @@ import { FaStar } from "react-icons/fa";
 import FormatCurrency from "../../components/FormatCurrency";
 
 const ProductsDetails = ({ dataDetails }) => {
-  
   return (
     <div className="mx-auto max-w-screen-xl px-4 py-8 sm:px-6 lg:px-8">
       <div className="grid grid-cols-1 gap-4 md:grid-cols-2 md:items-center md:gap-8">
         <div className="">
-          <img className="md:w-[400px] w-[250px]" src={dataDetails.image} alt="image" />
+          <img
+            className="md:w-[400px] w-[250px]"
+            src={dataDetails.image}
+            alt="image"
+          />
         </div>
         <div className="max-w-lg md:max-w-none space-y-4">
           <h3 className="uppercase text-2xl font-medium ">

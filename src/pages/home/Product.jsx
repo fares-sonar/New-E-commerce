@@ -4,10 +4,11 @@ import { FaStar } from "react-icons/fa";
 import { StoreCard } from "../../store/Store";
 import { useContext } from "react";
 import FormatCurrency from "../../components/FormatCurrency";
+import { useNavigate } from "react-router-dom";
 
 function Product() {
-  const { filter, dispatch, truncateText } = useContext(StoreCard);
-
+  const { filter, dispatch, truncateText, details } = useContext(StoreCard);
+  const navigate = useNavigate()
   return (
     <div className="container mx-auto grid lg:grid-cols-4 md:grid-cols-2 grid-cols-1 gap-5 my-8 md:p-0 p-4">
       {filter.map((products) => {
@@ -27,7 +28,13 @@ function Product() {
                   <CiHeart className="w-[24px] h-[24px]" />
                 </span>
                 <span>
-                  <IoEyeOutline className="w-[24px] h-[24px]" />
+                  <IoEyeOutline
+                    className="w-[24px] h-[24px]"
+                    onClick={() => {
+                      details(products);
+                      navigate('/products'  )
+                    }}
+                  />
                 </span>
               </div>
               <button

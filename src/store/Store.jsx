@@ -13,9 +13,14 @@ const Store = ({ children }) => {
     ? JSON.parse(localStorage.getItem("filter"))
     : [];
 
+  const detailsProduct = localStorage.getItem("detailsProduct")
+    ? JSON.parse(localStorage.getItem("detailsProduct"))
+    : [];
+
   const [data, setData] = useState([]);
   const [filter, setFilter] = useState(filterData);
   const [cart, dispatch] = useReducer(CartReducer, initialItem);
+  const [dataDetails, setDataDetails] = useState(detailsProduct);
 
   useEffect(() => {
     const fetchProducts = async () => {
@@ -37,7 +42,8 @@ const Store = ({ children }) => {
   useEffect(() => {
     localStorage.setItem("store", JSON.stringify(cart));
     localStorage.setItem("filter", JSON.stringify(filter));
-  }, [cart, filter]);
+    localStorage.setItem("detailsProduct", JSON.stringify(dataDetails));
+  }, [cart, filter, dataDetails]);
 
   const truncateText = (text, length) => {
     return text.length > length ? text.slice(0, length) + "..." : text;
@@ -50,12 +56,20 @@ const Store = ({ children }) => {
     }
     setFilter(filterData);
   };
+
+  const details = (product) => {
+    setDataDetails(product);
+  };
+
+  console.log(dataDetails.length);
   return (
     <StoreCard.Provider
       value={{
         cart,
         data,
         filter,
+        dataDetails,
+        details,
         truncateText,
         filtration,
         dispatch,
