@@ -15,7 +15,7 @@ function App() {
   return (
     <>
       <Store>
-        <BrowserRouter basename="/New-E-Commerce/">
+        <BrowserRouter basename="/New-E-commerce/">
           <Header />
           <Routes>
             <Route path="/" element={<Home />} />
